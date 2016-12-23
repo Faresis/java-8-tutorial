@@ -1,6 +1,7 @@
 package ua.dp.mign;
 
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public final class SimpleLambdas {
@@ -8,6 +9,11 @@ public final class SimpleLambdas {
     public static void emptyBlocks() {
         Runnable emptyBlock = () -> { };
         Runnable explicitReturn = () -> { return; };
+    }
+
+    public static void noReturnValue() {
+        Consumer<String> noBlock = (str) -> System.out.println(str);
+        Consumer<String> withBlock = (String str) -> { System.out.println(str); };
     }
 
     public static void withReturnValue() {
