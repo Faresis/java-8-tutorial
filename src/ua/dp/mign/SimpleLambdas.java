@@ -1,7 +1,12 @@
 package ua.dp.mign;
 
+import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public final class SimpleLambdas {
@@ -36,5 +41,19 @@ public final class SimpleLambdas {
     public static void withParameters() {
         BiFunction<String, Integer, Boolean> explicitTypes = (String string, Integer integer) -> string.length() == integer;
         BiFunction<String, Integer, Boolean> implicitTypes = (string, integer) -> string.length() == integer;
+
+        /**
+         * In case when there is only one parameter then parentheses can be omitted.
+         */
+        Predicate<String> singleParam = s -> true;
+    }
+
+    public static void withException() {
+        FunctionalInterfaceWithException var = () -> Files.readAllLines(FileSystems.getDefault().getPath("folder", "file"));
+    }
+
+    @FunctionalInterface
+    private interface FunctionalInterfaceWithException {
+        void process() throws IOException;
     }
 }
