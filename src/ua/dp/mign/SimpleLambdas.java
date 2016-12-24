@@ -70,4 +70,26 @@ public final class SimpleLambdas {
          */
         Consumer<String> withoutReturnValue = s -> new ArrayList().add("1");
     }
+
+    public static void usingLocalVariables() {
+        // final variables can be captured by lambdas.
+        final int counter = 10;
+        Runnable usingFinal = () -> System.out.println(counter);
+
+        /**
+         * Variables that are effectively final, thus are assigned only once,
+         * can be captured by lambdas.
+         *
+         */
+        String text = "text";
+        Runnable usingEffectivelyFinal = () -> System.out.println(text);
+
+        /**
+         * This will not compile because variable state is changed.
+         * Such variables can't be used in lambdas.
+         */
+        //String variable = "initialState";
+        //Runnable usingNonFinal = () -> System.out.println(variable);
+        //variable = "newState";
+    }
 }
