@@ -1,9 +1,9 @@
 package ua.dp.mign;
 
 import java.io.IOException;
-import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -55,5 +55,19 @@ public final class SimpleLambdas {
     @FunctionalInterface
     private interface FunctionalInterfaceWithException {
         void process() throws IOException;
+    }
+
+    public static void voidCompatibilityRule() {
+        /**
+         * Predicate accepts string and returns boolean. Nothing special here.
+         */
+        Predicate<String> withReturnValue = s -> new ArrayList().add("1");
+        /**
+         * Consumer takes a string and returns nothing.
+         * Despite the fact that expression in lambda returns boolean this lambda
+         * matches target type due to void compatibility rule.
+         * Return value simply ignored.
+         */
+        Consumer<String> withoutReturnValue = s -> new ArrayList().add("1");
     }
 }
