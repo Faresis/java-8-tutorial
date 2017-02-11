@@ -1,4 +1,4 @@
-package ua.dp.mign;
+package ua.dp.mign.java8.basics;
 
 import java.util.Arrays;
 import java.util.List;
