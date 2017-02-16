@@ -10,5 +10,12 @@ public final class SumOfAllCalories {
                 .mapToInt(Dish::getCalories)
                 .sum()
         );
+
+
+        System.out.println("Sum of all calories in the menu (reduction): " +
+                Menu.getMenu().stream()
+                        .map(d -> d.getCalories())
+                        .reduce(Integer::sum)
+        );
     }
 }
