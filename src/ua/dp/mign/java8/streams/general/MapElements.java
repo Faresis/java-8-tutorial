@@ -11,5 +11,10 @@ public final class MapElements {
                 .map(Dish::getName)
                 .collect(toList())
         );
+        System.out.println(Menu.getMenu().stream()
+                .map(Dish::getName)
+                .map(String::length)
+                .collect(toList())
+        );
     }
 }
