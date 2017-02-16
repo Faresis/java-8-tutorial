@@ -5,10 +5,9 @@ import ua.dp.mign.java8.domain.Menu;
 
 public final class FindAnyElement {
     public static void main(String[] args) {
-        System.out.println("Any vegetarian dish: " +
-                Menu.getMenu().stream()
+        Menu.getMenu().stream()
                 .filter(Dish::isVegetarian)
                 .findAny()
-        );
+                .ifPresent(System.out::println);
     }
 }
