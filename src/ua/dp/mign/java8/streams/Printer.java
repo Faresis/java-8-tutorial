@@ -1,11 +1,11 @@
 package ua.dp.mign.java8.streams;
 
-import ua.dp.mign.java8.streams.highcaloric.HighCaloricDishNamesStreamed;
-import ua.dp.mign.java8.streams.lowcaloric.LowCaloricDishNames;
-import ua.dp.mign.java8.streams.lowcaloric.LowCaloricDishNamesIterative;
-import ua.dp.mign.java8.streams.lowcaloric.LowCaloricDishNamesStreamed;
-import ua.dp.mign.java8.streams.numbers.DistinctEvenNumbers;
-import ua.dp.mign.java8.streams.vegetarian.VegetarianDishes;
+import ua.dp.mign.java8.streams.filtering.highcaloric.HighCaloricDishNamesStreamed;
+import ua.dp.mign.java8.streams.filtering.lowcaloric.LowCaloricDishNames;
+import ua.dp.mign.java8.streams.filtering.lowcaloric.LowCaloricDishNamesIterative;
+import ua.dp.mign.java8.streams.filtering.lowcaloric.LowCaloricDishNamesStreamed;
+import ua.dp.mign.java8.streams.filtering.numbers.DistinctEvenNumbers;
+import ua.dp.mign.java8.streams.filtering.vegetarian.VegetarianDishes;
 
 import java.util.Arrays;
 

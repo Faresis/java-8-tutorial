@@ -1,4 +1,4 @@
-package ua.dp.mign.java8.streams.vegetarian;
+package ua.dp.mign.java8.streams.filtering.vegetarian;
 
 import ua.dp.mign.java8.domain.Dish;
 import ua.dp.mign.java8.domain.Menu;

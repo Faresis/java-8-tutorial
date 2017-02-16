@@ -1,4 +1,4 @@
-package ua.dp.mign.java8.streams.lowcaloric;
+package ua.dp.mign.java8.streams.filtering.lowcaloric;
 
 import java.util.List;
 

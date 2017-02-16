@@ -1,4 +1,4 @@
-package ua.dp.mign.java8.streams.numbers;
+package ua.dp.mign.java8.streams.filtering.numbers;
 
 import java.util.Collection;
 import java.util.List;
