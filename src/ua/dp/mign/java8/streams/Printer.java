@@ -4,7 +4,10 @@ import ua.dp.mign.java8.streams.highcaloric.HighCaloricDishNamesStreamed;
 import ua.dp.mign.java8.streams.lowcaloric.LowCaloricDishNames;
 import ua.dp.mign.java8.streams.lowcaloric.LowCaloricDishNamesIterative;
 import ua.dp.mign.java8.streams.lowcaloric.LowCaloricDishNamesStreamed;
+import ua.dp.mign.java8.streams.numbers.DistinctEvenNumbers;
 import ua.dp.mign.java8.streams.vegeterian.VegeterainDishes;
+
+import java.util.Arrays;
 
 public final class Printer {
     public static void main(String[] args) {
@@ -19,5 +22,8 @@ public final class Printer {
 
         VegeterainDishes vegeterainDishes = new VegeterainDishes();
         System.out.println("Vegetarian dishes: " + vegeterainDishes.getDishes());
+
+        DistinctEvenNumbers distinctEvenNumbers = new DistinctEvenNumbers();
+        System.out.println("Distinct even numbers: " + distinctEvenNumbers.filter(Arrays.asList(1, 2, 1, 3, 3, 2, 4)));
     }
 }
