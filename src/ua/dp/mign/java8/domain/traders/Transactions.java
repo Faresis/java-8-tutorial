@@ -13,5 +13,9 @@ public final class Transactions {
             new Transaction(Traders.ALAN, 2012, 950)
     );
 
+    public static List<Transaction> getTransactions() {
+        return TRANSACTIONS;
+    }
+
     private Transactions() {}
 }
