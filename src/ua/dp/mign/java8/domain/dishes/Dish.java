@@ -1,4 +1,4 @@
-package ua.dp.mign.java8.domain;
+package ua.dp.mign.java8.domain.dishes;
 
 /**
  * Class represents dish in a menu.

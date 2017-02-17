@@ -1,6 +1,6 @@
 package ua.dp.mign.java8.streams.general;
 
-import ua.dp.mign.java8.domain.Menu;
+import ua.dp.mign.java8.domain.dishes.Menu;
 
 import static java.util.stream.Collectors.toList;
 

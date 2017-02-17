@@ -1,6 +1,6 @@
 package ua.dp.mign.java8.streams.general;
 
-import ua.dp.mign.java8.domain.Menu;
+import ua.dp.mign.java8.domain.dishes.Menu;
 
 public final class NoneMatchElements {
     public static void main(String[] args) {

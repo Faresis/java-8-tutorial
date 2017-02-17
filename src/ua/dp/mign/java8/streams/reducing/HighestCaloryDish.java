@@ -1,7 +1,7 @@
 package ua.dp.mign.java8.streams.reducing;
 
-import ua.dp.mign.java8.domain.Dish;
-import ua.dp.mign.java8.domain.Menu;
+import ua.dp.mign.java8.domain.dishes.Dish;
+import ua.dp.mign.java8.domain.dishes.Menu;
 
 public final class HighestCaloryDish {
     public static void main(String[] args) {
