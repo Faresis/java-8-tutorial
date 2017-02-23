@@ -31,6 +31,10 @@ public final class Transaction {
         return currency;
     }
 
+    public boolean isExpensive() {
+        return value > 700;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Transaction.class.getSimpleName() + "[", "]")
