@@ -1,5 +1,6 @@
 package ua.dp.mign.java8.streams.collectors;
 
+import ua.dp.mign.java8.domain.dishes.Dish;
 import ua.dp.mign.java8.domain.dishes.Menu;
 
 import java.util.ArrayList;
@@ -46,5 +47,7 @@ public final class ToListCollector<T> implements Collector<T, List<T>, List<T>> 
     public static void main(String[] args) {
         System.out.println(Menu.getMenu().stream().collect(Collectors.toList()));
         System.out.println(Menu.getMenu().stream().collect(new ToListCollector<>()));
+        List<Dish> dishes = Menu.getMenu().stream().collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        System.out.println(dishes);
     }
 }
