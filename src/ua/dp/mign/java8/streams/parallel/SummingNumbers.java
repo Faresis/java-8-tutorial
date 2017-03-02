@@ -1,5 +1,6 @@
 package ua.dp.mign.java8.streams.parallel;
 
+import java.util.concurrent.ForkJoinPool;
 import java.util.function.Function;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
@@ -60,12 +61,17 @@ public final class SummingNumbers {
         }
     }
 
+    public static long forkJoinSum(long n) {
+        long[] numbers = LongStream.rangeClosed(1, n).toArray();
+        ForkJoinSumCalculator task = new ForkJoinSumCalculator(numbers);
+        return new ForkJoinPool().invoke(task);
+    }
+
     public static long measureSumPerf(Function<Long, Long> adder, long n) {
         long fastest = Long.MAX_VALUE;
         for (int i = 0; i < 10; i++) {
             long start = System.nanoTime();
             long sum = adder.apply(n);
-            System.out.println("Result: " + sum);
             long duration = (System.nanoTime() - start) / 1_000_000;
             if (duration < fastest) fastest = duration;
         }
@@ -73,12 +79,12 @@ public final class SummingNumbers {
     }
 
     public static void main(String[] args) {
-/*        out.println("Sequental sum done in: " + measureSumPerf(SummingNumbers::sequentalSum, 10_000_000) + "msecs");
-        out.println("Iterative sum done in: " + measureSumPerf(SummingNumbers::iterativeSum, 10_000_000) + "msecs");
-        out.println("Parallel sum done in: " + measureSumPerf(SummingNumbers::parallelSum, 10_000_000) + "msecs");
-        out.println("Ranged sum done in: " + measureSumPerf(SummingNumbers::rangedSum, 10_000_000) + "msecs");
-        out.println("Ranged parallel sum done in: " + measureSumPerf(SummingNumbers::rangedParallelSum, 10_000_000) + "msecs");*/
-
-        out.println("Side effect parallel sum done in: " + measureSumPerf(SummingNumbers::sideEffectParallelSum, 10_000_000) + "msecs");
+        out.println("Sequental sum done in: " + measureSumPerf(SummingNumbers::sequentalSum, 10_000_000) + " msecs");
+        out.println("Iterative sum done in: " + measureSumPerf(SummingNumbers::iterativeSum, 10_000_000) + " msecs");
+        out.println("Parallel sum done in: " + measureSumPerf(SummingNumbers::parallelSum, 10_000_000) + " msecs");
+        out.println("Ranged sum done in: " + measureSumPerf(SummingNumbers::rangedSum, 10_000_000) + " msecs");
+        out.println("Ranged parallel sum done in: " + measureSumPerf(SummingNumbers::rangedParallelSum, 10_000_000) + " msecs");
+        out.println("Side effect parallel sum done in: " + measureSumPerf(SummingNumbers::sideEffectParallelSum, 10_000_000) + " msecs");
+        out.println("Fork join sum done in: " + measureSumPerf(SummingNumbers::forkJoinSum, 10_000_000) + " msecs");
     }
 }
