@@ -5,6 +5,8 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
 
 public final class CreatingDuration {
     public static void main(String[] args) {
@@ -23,8 +25,18 @@ public final class CreatingDuration {
 
         Duration instants = Duration.between(i1, i2);
 
+        Duration threeMinutes = Duration.ofMinutes(3);
+        Duration threeChronoMinutes = Duration.of(3, ChronoUnit.MINUTES);
+        Duration sevenDays = Duration.ofDays(7);
+
+        Temporal subtractedDateTime = Duration.ofDays(1).subtractFrom(LocalDateTime.now());
+
         System.out.println("Times: " + times);
         System.out.println("Dates: " + dates);
         System.out.println("Instants: " + instants);
+        System.out.println("three minutes: " + threeMinutes);
+        System.out.println("three chrono minutes: " + threeChronoMinutes);
+        System.out.println("seven days: " + sevenDays);
+        System.out.println("subtracted date time: " + subtractedDateTime);
     }
 }

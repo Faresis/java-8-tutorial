@@ -17,6 +17,8 @@ public final class CreatingLocalDateTime {
         LocalDate date1 = dt1.toLocalDate();
         LocalTime localTime = dt1.toLocalTime();
 
+        LocalDate dateFrom = LocalDate.from(date);
+
         System.out.printf("dt1 %s\n", dt1);
         System.out.printf("dt2 %s\n", dt2);
         System.out.printf("dt3 %s\n", dt3);
@@ -24,5 +26,6 @@ public final class CreatingLocalDateTime {
         System.out.printf("dt5 %s\n", dt5);
         System.out.printf("date1 %s\n", date1);
         System.out.printf("localTime %s\n", localTime);
+        System.out.println("dateFrom " + dateFrom);
     }
 }
