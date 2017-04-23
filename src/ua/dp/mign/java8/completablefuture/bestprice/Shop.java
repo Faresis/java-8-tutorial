@@ -13,6 +13,10 @@ public final class Shop {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public double getPrice(String product) {
         return calculatePrice(product);
     }
@@ -39,7 +43,5 @@ public final class Shop {
         }
     }
 
-    public static class PriceException extends RuntimeException {
-
-    }
+    public static class PriceException extends RuntimeException { }
 }
