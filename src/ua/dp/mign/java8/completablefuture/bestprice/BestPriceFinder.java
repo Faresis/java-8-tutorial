@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -59,6 +60,14 @@ public final class BestPriceFinder {
         return futures.stream()
                 .map(CompletableFuture::join)
                 .collect(toList());
+    }
+
+    public Stream<CompletableFuture<String>> findPricesStream(String product) {
+        return shops.stream()
+                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPriceWithDiscount(product), executor))
+                .map(future -> future.thenApply(Quote::parse))
+                .map(future -> future.thenCompose(quote ->
+                        CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)));
     }
 
     public List<String> findPricesParallelStream(String product) {
