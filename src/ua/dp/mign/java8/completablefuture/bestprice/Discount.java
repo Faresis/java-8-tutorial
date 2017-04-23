@@ -1,6 +1,11 @@
 package ua.dp.mign.java8.completablefuture.bestprice;
 
+import java.util.Random;
+
 public final class Discount {
+
+    private static final Random RANDOM = new Random();
+
     public enum Code {
         NONE(0), SILVER(5), GOLD(10), PLATINUM(15), DIAMOND(20);
 
@@ -23,8 +28,9 @@ public final class Discount {
     }
 
     public static void delay() {
+        int delay = 500 + RANDOM.nextInt(2000);
         try {
-            Thread.sleep(1000);
+            Thread.sleep(delay);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

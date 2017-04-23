@@ -6,7 +6,7 @@ import java.util.concurrent.Future;
 
 public final class Shop {
 
-    private final Random random = new Random();
+    private static final Random RANDOM = new Random();
     private final String name;
 
     public Shop(String name) {
@@ -27,7 +27,7 @@ public final class Shop {
         System.out.println(Thread.currentThread().getName() + " " + System.nanoTime() + " Getting price with discount for: " + name);
 
         double price = calculatePrice(product);
-        Discount.Code discount = Discount.Code.values()[random.nextInt(Discount.Code.values().length)];
+        Discount.Code discount = Discount.Code.values()[RANDOM.nextInt(Discount.Code.values().length)];
         return String.format("%s:%.2f:%s", name, price, discount);
     }
 
@@ -40,13 +40,14 @@ public final class Shop {
         if (this.name.startsWith("Exc")) {
             throw new PriceException();
         }
-        return random.nextDouble() * product.charAt(0) + product.charAt(1);
+        return RANDOM.nextDouble() * product.charAt(0) + product.charAt(1);
     }
 
     private static void delay() {
+        int delay = 500 + RANDOM.nextInt(2000);
         try {
 
-            Thread.sleep(1000L);
+            Thread.sleep(delay);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
