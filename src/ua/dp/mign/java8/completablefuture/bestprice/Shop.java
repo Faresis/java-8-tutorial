@@ -13,24 +13,12 @@ public final class Shop {
         this.name = name;
     }
 
-    public double getPrice(String product) throws PriceException {
+    public double getPrice(String product) {
         return calculatePrice(product);
     }
 
     public Future<Double> getPriceAsync(String product) {
-        CompletableFuture<Double> result = new CompletableFuture<>();
-        new Thread(() -> {
-            try {
-
-                double price = calculatePrice(product);
-                result.complete(price);
-
-            } catch (PriceException ex) {
-                result.completeExceptionally(ex);
-            }
-        }).start();
-
-        return result;
+        return CompletableFuture.supplyAsync(() -> calculatePrice(product));
     }
 
     private double calculatePrice(String product) throws PriceException {
@@ -51,7 +39,7 @@ public final class Shop {
         }
     }
 
-    public static class PriceException extends Exception {
+    public static class PriceException extends RuntimeException {
 
     }
 }
