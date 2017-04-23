@@ -48,6 +48,19 @@ public final class BestPriceFinder {
                 .collect(toList());
     }
 
+    public List<String> findPricesWithDiscountsAsync(String product) {
+        List<CompletableFuture<String>> futures = shops.stream()
+                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPriceWithDiscount(product), executor))
+                .map(future -> future.thenApply(Quote::parse))
+                .map(future -> future.thenCompose(quote ->
+                        CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)))
+                .collect(toList());
+
+        return futures.stream()
+                .map(CompletableFuture::join)
+                .collect(toList());
+    }
+
     public List<String> findPricesParallelStream(String product) {
         return shops.parallelStream()
                 .map(shop -> String.format("%s price is %.2f",
