@@ -13,22 +13,31 @@ public final class Shop {
         this.name = name;
     }
 
-    public double getPrice(String product) {
+    public double getPrice(String product) throws PriceException {
         return calculatePrice(product);
     }
 
     public Future<Double> getPriceAsync(String product) {
         CompletableFuture<Double> result = new CompletableFuture<>();
         new Thread(() -> {
-            double price = calculatePrice(product);
-            result.complete(price);
+            try {
+
+                double price = calculatePrice(product);
+                result.complete(price);
+
+            } catch (PriceException ex) {
+                result.completeExceptionally(ex);
+            }
         }).start();
 
         return result;
     }
 
-    private double calculatePrice(String product) {
+    private double calculatePrice(String product) throws PriceException {
         delay();
+        if (this.name.startsWith("Exc")) {
+            throw new PriceException();
+        }
         return random.nextDouble() * product.charAt(0) + product.charAt(1);
     }
 
@@ -40,5 +49,9 @@ public final class Shop {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static class PriceException extends Exception {
+
     }
 }
