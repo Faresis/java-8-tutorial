@@ -14,10 +14,12 @@ public final class Shop {
     }
 
     public String getName() {
+        System.out.println(Thread.currentThread().getName() + " " + System.nanoTime() + " Getting name for: " + name);
         return name;
     }
 
     public double getPrice(String product) {
+        System.out.println(Thread.currentThread().getName() + " " + System.nanoTime() + " Getting price for: " + name);
         return calculatePrice(product);
     }
 
