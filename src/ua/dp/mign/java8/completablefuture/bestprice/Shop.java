@@ -23,6 +23,14 @@ public final class Shop {
         return calculatePrice(product);
     }
 
+    public String getPriceWithDiscount(String product) {
+        System.out.println(Thread.currentThread().getName() + " " + System.nanoTime() + " Getting price with discount for: " + name);
+
+        double price = calculatePrice(product);
+        Discount.Code discount = Discount.Code.values()[random.nextInt(Discount.Code.values().length)];
+        return String.format("%s:%.2f:%s", name, price, discount);
+    }
+
     public Future<Double> getPriceAsync(String product) {
         return CompletableFuture.supplyAsync(() -> calculatePrice(product));
     }
