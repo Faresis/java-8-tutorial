@@ -11,6 +11,6 @@ public final class TotalCalories {
     public static void main(String[] args) {
         out.println(getMenu().stream().collect(summingInt(Dish::getCalories)));
 
-        out.println(getMenu().stream().collect(reducing(0, Dish::getCalories, (i, z) -> i + z)));
+        out.println(getMenu().stream().collect(reducing(0, Dish::getCalories, Integer::sum)));
     }
 }
